@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <form action="" method="GET" onsubmit="event.preventDefault();ajax()">
+        <input type="text" name="username" placeholder="Your name">
+        <input type="text" name="birth-year" placeholder="Your birth year">
+        <input type="submit">
+    </form>
+
+    <h2 id="message"></h2>
+    <h1>Ajax</h1>
+    <script>
+        // let access = fetch('access.php').then(response => console.log(response));
+        function ajax() {
+            let input = document.querySelectorAll('[type="text"]');
+            let result = document.querySelector('#message');
+            fetch(`access.php?username=${input[0].value}&birth-year=${input[1].value}`)
+                .then(response => response.json())
+                .then(data => {
+                    console.log(data);
+                    result.textContent = data;
+                });
+            // let result = JSON.parse(access);
+            // console.log(result + 'response');
+        }
+    </script>
+    <script>
+        const arr = [1, 5, 3, 2, 7, 9, 8];
+        // ascend - по збільшенню
+        function sortASC(array) {
+            let sorted = array;
+            console.log(sorted);
+            for (let i = 0; i < sorted.length; i++) {
+                // if (i === array.length - 1) break;
+
+                for (let j = 0; j < sorted.length; j++) {
+                    if (sorted[j] > sorted[i]) {
+                        let temp = sorted[j];
+                        sorted[j] = sorted[i];
+                        sorted[i] = temp;
+                        // sorted[i + 1] = array[i];
+
+                    }
+                    // else if (array[i] < array[j]) {
+                    //     sorted[i] = array[i];
+                    //     // sorted[i + 1] = array[j];
+
+                    // } else {
+                    //     sorted[i] = array[j];
+                    //     // sorted[i + 1] = array[j];
+                    // }
+                }
+            }
+
+            console.log(sorted);
+            console.log(array);
+        }
+
+        sortASC(arr);
+
+    </script>
+</body>
+
+</html>
